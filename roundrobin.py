@@ -174,6 +174,8 @@ def playgame(gold_eng, silver_eng, timecontrol=None, position=None):
             while not timeout or time.time() < timeout:
                 if timeout:
                     wait = timeout - time.time()
+                    if wait > 5:
+                      wait = wait - 5
                 else:
                     wait = None
                 resp = engine.get_response(wait)
@@ -185,6 +187,18 @@ def playgame(gold_eng, silver_eng, timecontrol=None, position=None):
                     log.info("%s log: %s" % ("gs"[side], resp.message))
         except socket.timeout:
             engine.stop()
+            log.info("stopped, but trying again");
+            try:
+                resp = engine.get_response(5)
+                log.info("resp after stop");
+                if resp.type == "bestmove":
+                    pass # break # not in while loop inside this kludge code -- only in real code
+                if resp.type == "info":
+                    log.info("%s info: %s" % ("gs"[side], resp.message))
+                elif resp.type == "log":
+                    log.info("%s log: %s" % ("gs"[side], resp.message))
+            except socket.timeout:
+              log.info("timeout after stop");
         endtime = time.time()
 
         if resp and resp.type == "bestmove":
