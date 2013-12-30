@@ -199,6 +199,8 @@ def playgame(gold_eng, silver_eng, timecontrol=None, position=None):
                     if reserve_max:
                         reserves[side] = min(reserves[side], reserve_max)
             move = resp.move
+            if move.lower() == "resign":
+              return (side^1, "r", position)
             mn = position.movenumber
             position = position.do_move_str(move)
             if position.color == Color.GOLD:
