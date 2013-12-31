@@ -21,6 +21,7 @@ class _ComThread(Thread):
     def run(self):
         while not self.stop.isSet():
             msg = sys.stdin.readline()
+            # this crashes if the controller doesn't shut down cleanly
             self.messages.put(msg.strip())
 
 
