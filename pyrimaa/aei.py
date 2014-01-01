@@ -335,6 +335,8 @@ class EngineController:
         resp = EngineResponse(rstr.split()[0].lower())
         if resp.type == "info":
             resp.message = rstr[rstr.find("info")+len("info"):].strip()
+        if resp.type == "chat":
+            resp.message = rstr[rstr.find("chat")+len("chat"):].strip()
         if resp.type == "log":
             resp.message = rstr[rstr.find("log")+len("log"):].strip()
         if resp.type == "bestmove":
@@ -347,6 +349,9 @@ class EngineController:
 
     def newgame(self):
         self.engine.send("newgame\n")
+
+    def chat(self, message):
+        self.engine.send("chat %s\n" % (message))
 
     def makemove(self, move):
         self.engine.send("makemove %s\n" % (move))
