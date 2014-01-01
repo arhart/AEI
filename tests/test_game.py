@@ -362,6 +362,7 @@ class MockEngine(object):
                     time.sleep(timeout)
                     sleep_time = time.time() - start
                     # account for time slept
+                    # What if this results in a negative sleep time on the next call?
                     self.delay[self.move] -= sleep_time
                     # try the same move next time we're asked
                     self.move -= 1

@@ -438,9 +438,7 @@ class Table:
                 while True:
                     now = time.time()
                     if not stopsent and now + waittime > stoptime:
-                        waittime = (stoptime - now) + 0.2
-                        if waittime < 0:
-                            waittime = 0
+                        waittime = max(0, (stoptime - now) + 0.2)
                     if not stopsent and now >= stoptime:
                         # try and get a move before time runs out
                         engine.stop()
