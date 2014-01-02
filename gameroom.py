@@ -189,23 +189,25 @@ class Table:
                 self.sent_tc[var] = state[var]
 
     def update_chat(self, chat):
-        if (len(self.prevchat)>chat):
-            # another game?
-            self.prevchat=""
-        new_chat = chat[len(self.prevchat):]
-        enginelog.info("new_chat %s",new_chat)
-        # detect if opponent was chatting and in that case resent the chat to the engine
-        new_chat_lines=new_chat.splitlines()
-        for line in new_chat_lines:
-           # test chatting side
-           #if ((line[:1]=='g')!=(self.side=='w')):
-              #chat from the opponent, strip the side flag.
-              #more elaborative approach would deal with move numbers as well
-              #especially when a game is restarted ... to split chats among moves, but I don't think
-              #it is important
-           #self.engine_ctl.chat(join(line.split()[1:]))
-           self.engine_ctl.chat(line)
-        self.prevchat = chat
+        pass
+# can't find engine; deal with it later
+#        if (len(self.prevchat)>chat):
+#            # another game?
+#            self.prevchat=""
+#        new_chat = chat[len(self.prevchat):]
+#        enginelog.info("new_chat %s",new_chat)
+#        # detect if opponent was chatting and in that case resent the chat to the engine
+#        new_chat_lines=new_chat.splitlines()
+#        for line in new_chat_lines:
+#           # test chatting side
+#           #if ((line[:1]=='g')!=(self.side=='w')):
+#              #chat from the opponent, strip the side flag.
+#              #more elaborative approach would deal with move numbers as well
+#              #especially when a game is restarted ... to split chats among moves, but I don't think
+#              #it is important
+#           #self.engine.chat(join(line.split()[1:]))
+#           self.engine.chat(line)
+#        self.prevchat = chat
 
     def reserveseat(self):
         gameroom = self.gameroom
@@ -463,7 +465,8 @@ class Table:
                     # AEI_eee's gameroom_tst.py added an additional updatestate call (for chat?)
                     # should it be optional so it doesn't impact performance if the bot doesn't care about chat?
                     # it was after setting now; now it is before so that the delay is considered for waittime and stoptime
-                    state = self.updatestate()
+                    # this extra update is too frequent when the bot sends frequent messages between moves
+                    #state = self.updatestate()
                     now = time.time()
                     if not stopsent and now + waittime > stoptime:
                         waittime = max(0, (stoptime - now) + 0.2)
