@@ -5,7 +5,7 @@ import sys
 from threading import Thread, Event
 from Queue import Queue, Empty
 
-from pyrimaa.board import (
+from board import (
         BASIC_SETUP, BLANK_BOARD, Color, parse_short_pos, Position,
         )
 

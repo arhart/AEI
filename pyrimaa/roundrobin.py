@@ -28,9 +28,9 @@ import time
 
 from ConfigParser import SafeConfigParser, NoOptionError
 
-from pyrimaa import aei
-from pyrimaa.game import Game
-from pyrimaa.util import TimeControl
+import aei
+from game import Game
+from util import TimeControl
 
 logging.basicConfig(level=logging.WARN)
 log = logging.getLogger("roundrobin")

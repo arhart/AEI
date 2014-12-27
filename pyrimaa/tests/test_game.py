@@ -22,9 +22,9 @@ import socket
 import time
 import unittest
 
-from pyrimaa.board import Color, Position, BASIC_SETUP, IllegalMove
-from pyrimaa.game import Game
-from pyrimaa.util import TimeControl
+from board import Color, Position, BASIC_SETUP, IllegalMove
+from game import Game
+from util import TimeControl
 
 goal_moves = """1g Ra2 Db2 Hc2 Ed2 Me2 Hf2 Dg2 Rh2 Ra1 Rb1 Rc1 Cd1 Ce1 Rf1 Rg1 Rh1
 1s rh7 ra7 rh8 rg8 rf8 rc8 rb8 ra8 cc7 cd8 df7 de8 hg7 hb7 md7 ee7

@@ -53,7 +53,7 @@ import time
 import urllib
 import urllib2
 
-from pyrimaa import aei
+import aei
 
 _GR_CGI = "bot1gr.cgi"
 

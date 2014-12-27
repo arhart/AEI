@@ -22,7 +22,7 @@
 
 import unittest
 
-from pyrimaa.tests import test_util, test_game
+from tests import test_util, test_game
 
 def main():
     loader = unittest.TestLoader()

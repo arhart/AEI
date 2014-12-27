@@ -20,7 +20,7 @@
 
 from unittest import TestCase
 
-from pyrimaa.util import TimeControl
+from util import TimeControl
 
 class TestTimeControl(TestCase):
     def test_movetime(self):
