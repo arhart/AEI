@@ -39,3 +39,11 @@ the AEI protocol (``aei.py``), the Arimaa position representation (as bitboards
 in ``board.py`` and x88 in ``x88board.py``), and a few utility functions for
 handling Arimaa timecontrols (``util.py``).
 
+setup.py can be used to install the package. It depends on python-setuptools
+which might need to be installed first.
+
+The pyrimaa package needs to end up on the PYTHONPATH somehow. The intended way for this to happen is for AEI to be installed with setup.py using something like "python setup.py install".
+
+One gotcha though is you probably don't really want it installed into the system python directories (which would also require root). If you use python for lots of different projects I'd recommend setting up a virtualenv for it.
+
+But the easiest thing to do is a user install with "python setup.py install --user" run from the AEI directory. This will install to "~/.local". Python automatically has ~/.local/lib/blah in it's pythonpath so the scripts will work. Also if you add ~/.local/bin to your shell path then you can run the scripts using "gameroom", "analyze", etc..
